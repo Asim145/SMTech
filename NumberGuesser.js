@@ -1,38 +1,58 @@
 let submitGuess = document.querySelector("#submitGuess");
 const num = Math.floor(Math.random() * 100 + 1);
-let usertry = 0;
+let usertry = document.querySelector("#userTries").innerHTML;
 let userscore = 100;
 if (submitGuess) {
   submitGuess.addEventListener("click", () => {
     let userGuess = document.querySelector("#inputGuess").value;
-    if (userGuess == "" || userGuess == 0) {
+    if (usertry == 1) {
+      alert("You Lose.... Play Again?");
+      usertry = 10;
+      //load_js();
+    }
+    //-------- Main Logic --------------//
+    else if (userGuess == "" || userGuess == 0) {
       document.querySelector("#userMessage").innerHTML =
         "Please enter a valid number";
     } else if (num < userGuess) {
       document.querySelector("#userMessage").innerHTML =
         "Your Number is greater";
-      usertry++;
+      usertry--;
     } else if (num > userGuess) {
       document.querySelector("#userMessage").innerHTML =
         "Your Number is smaller";
-      usertry++;
+      usertry--;
     } else if (num == userGuess) {
-      usertry++;
-      document.querySelector("#userMessage").innerHTML =
-        "Yayy!!! You Guessed it....";
-      document.querySelector("#userTries").innerHTML = usertry;
+      alert("Yayy!!! You Guessed it....  Play again?");
       document.querySelector("#userScore").innerHTML = userscore - usertry;
     } else {
       document.querySelector("#userMessage").innerHTML =
         "Please enter a valid number";
     }
+    //-------- END Main Logic --------------//
+    document.querySelector("#userTries").innerHTML = usertry;
+    changeUserTryColor();
   });
 }
+
 let userGuess = document.querySelector("#inputGuess");
 userGuess.addEventListener("click", () => {
   userGuess.value = "";
   document.querySelector("#userMessage").innerHTML = "";
 });
+
+//-------- User-try color Logic --------------//
+function changeUserTryColor() {
+  if (usertry > 7) {
+    document.getElementById("userTries").style.color = "white";
+  }
+  if (usertry < 6 && usertry > 3) {
+    document.getElementById("userTries").style.color = "yellow";
+  } else if (usertry < 4) {
+    document.getElementById("userTries").style.color = "red";
+  }
+}
+//-------- End User-try color Logic --------------//
 // Number Guess Game Main Logic
 // let num = Math.floor(Math.random() * 100 + 1);
 // let usertry = 0;
