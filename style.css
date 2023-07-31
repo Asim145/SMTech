@@ -3,7 +3,7 @@ a{
     color: black;
 }
 @media screen and (max-width:768px){
-.total-score, .user-score{
+.total-score, #user-score{
     display: none;
 }
 

@@ -1,5 +1,6 @@
 let submitGuess = document.querySelector("#submitGuess");
-const num = Math.floor(Math.random() * 100 + 1);
+let num;
+randomNumber();
 let usertry = document.querySelector("#userTries").innerHTML;
 let userscore = 100;
 if (submitGuess) {
@@ -8,7 +9,8 @@ if (submitGuess) {
     if (usertry == 1) {
       alert("You Lose.... Play Again?");
       usertry = 10;
-      //load_js();
+      randomNumber();
+      document.getElementById("user-score").style.display = "none";
     }
     //-------- Main Logic --------------//
     else if (userGuess == "" || userGuess == 0) {
@@ -23,8 +25,10 @@ if (submitGuess) {
         "Your Number is smaller";
       usertry--;
     } else if (num == userGuess) {
+      document.getElementById("user-score").style.display = "block";
       alert("Yayy!!! You Guessed it....  Play again?");
       document.querySelector("#userScore").innerHTML = userscore - usertry;
+      randomNumber();
     } else {
       document.querySelector("#userMessage").innerHTML =
         "Please enter a valid number";
@@ -40,6 +44,12 @@ userGuess.addEventListener("click", () => {
   userGuess.value = "";
   document.querySelector("#userMessage").innerHTML = "";
 });
+//-------- Random Number Logic --------------//
+function randomNumber() {
+  num = Math.floor(Math.random() * 100 + 1);
+  console.log(num);
+}
+//-------- End Random Number Logic --------------//
 
 //-------- User-try color Logic --------------//
 function changeUserTryColor() {
