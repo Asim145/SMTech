@@ -10,11 +10,11 @@ if (submitGuess) {
         "Please enter a valid number";
     } else if (num < userGuess) {
       document.querySelector("#userMessage").innerHTML =
-        "The Number is smaller";
+        "Your Number is greater";
       usertry++;
     } else if (num > userGuess) {
       document.querySelector("#userMessage").innerHTML =
-        "The Number is greater";
+        "Your Number is smaller";
       usertry++;
     } else if (num == userGuess) {
       usertry++;
@@ -22,11 +22,17 @@ if (submitGuess) {
         "Yayy!!! You Guessed it....";
       document.querySelector("#userTries").innerHTML = usertry;
       document.querySelector("#userScore").innerHTML = userscore - usertry;
-    } else
+    } else {
       document.querySelector("#userMessage").innerHTML =
         "Please enter a valid number";
+    }
   });
 }
+let userGuess = document.querySelector("#inputGuess");
+userGuess.addEventListener("click", () => {
+  userGuess.value = "";
+  document.querySelector("#userMessage").innerHTML = "";
+});
 // Number Guess Game Main Logic
 // let num = Math.floor(Math.random() * 100 + 1);
 // let usertry = 0;
