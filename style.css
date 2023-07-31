@@ -2,3 +2,12 @@ a{
     text-decoration: none;
     color: black;
 }
+@media screen and (max-width:768px){
+.total-score, .user-score{
+    display: none;
+}
+
+}
+.bg-red{
+    background-color: red;
+}
